@@ -1,0 +1,23 @@
+{
+    "name": "nozemi/forumlib",
+    "description": "A forum library - for the core forum functionality, without a front-end to display it.",
+    "type": "library",
+    "require": {
+        "ircmaxell/password-compat": "^1.0",
+        "google/recaptcha": "^1.1"
+    },
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Nozemi",
+            "email": "nozemi95@gmail.com",
+            "homepage": "https://github.com/Nozemi",
+            "role": "Project Leader & Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ForumLib\\": "lib/ForumLib"
+        }
+    }
+}

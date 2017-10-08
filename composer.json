@@ -1,0 +1,5 @@
+{
+    "require": {
+        "nozemi/forumlib": "^1.1"
+    }
+}

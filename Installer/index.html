@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nozum Installer</title>
+
+    <link rel="stylesheet" type="text/css" href="dist/style.css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Nozum Installer</h1>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Forum Information</h2>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Forum Name:</span>
+                                        <input class="form-control" placeholder="Fancy Forum" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Forum Description:</span>
+                                        <input class="form-control" placeholder="This is a fancy forum for fancy people!" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Forum Root:</span>
+                                        <input class="form-control" placeholder="/path/to/index.php" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Forum Theme:</span>
+                                        <select class="form-control">
+                                            <option>Default</option>
+                                            <option>Fancy Theme</option>
+                                            <option>Awesome Dark</option>
+                                            <option>Awesome Light</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Forum Language:</span>
+                                        <select class="form-control">
+                                            <option>English</option>
+                                            <option>Norwegian</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr>
+                        <h2 class="text-center">Database Details</h2>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Host:</span>
+                                        <input class="form-control" placeholder="localhost" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Name:</span>
+                                        <input class="form-control" placeholder="fancyforum_db" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">User:</span>
+                                        <input class="form-control" placeholder="fancyforum_admin" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-3">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Password:</span>
+                                        <input type="password" class="form-control" placeholder="Some complicated database password" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <hr>
+                        <h2 class="text-center">Google reCaptcha</h2>
+                        <p class="text-center">Just leave these empty if you don't want to use Google's reCaptcha. Or go <a href="#" target="_blank">here</a> if you want to sign up for it.</p>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Private Key:</span>
+                                        <input class="form-control" placeholder="reCaptcha Private Key" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Public Key:</span>
+                                        <input class="form-control" placeholder="reCaptcha Public Key" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-danger">Cancel Installation</button>
+                            <button class="btn btn-warning">Validate Configuration</button>
+                            <button class="btn btn-success" disabled>Install Forum</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
