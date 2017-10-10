@@ -15,8 +15,8 @@ software, that can actually run on live websites.
 Preferably, you should also have Git installed, just to make your life a whole lot easier.
 
 ##### Installation
-1. Run `git clone git@github.com:Nozemi/NozumInstaller.git` in the directory you want to clone it from.
-Unless specified otherwise, it'll create the folder `NozumInstaller`, which will be the document root for your forum.
+1. Run `git clone git@github.com:Nozemi/Slick-Board.git` in the directory you want to clone it from.
+Unless specified otherwise, it'll create the folder `Slick-Board`, which will be the document root for your forum.
 2. Run `composer install`.
 3. Run `npm install`
 4. Run `npm run build`
