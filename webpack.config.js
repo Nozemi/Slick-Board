@@ -1,11 +1,9 @@
 var webpack             = require('webpack');
 var ExtractTextPlugin   = require('extract-text-webpack-plugin');
 
-if (typeof(theme) === 'undefined') {
-    var theme = 'slickboard';
-}
+var theme = 'slickboard';
 
-module.exports = theme = {
+module.exports = {
     entry: [
         './themes/' + theme + '/_assets/src/js/index.js'
     ],

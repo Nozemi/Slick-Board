@@ -9,6 +9,10 @@ use SBLib\Forums\Category;
 use SBLib\Forums\Topic;
 use SBLib\Forums\Thread;
 
+if(!file_exists('Installer/install.lock') || !file_exists('config') || !file_exists('.htaccess') || !file_exists('config/.htaccess')) {
+    header("Location: Installer");
+}
+
 require('inc/globals.php');
 
 $dir = MISC::findFile('plugins'); // Gets the library directory's actual position.
