@@ -1,5 +1,5 @@
 <?php
-    use ForumLib\Utilities\MISC;
+    use SBLib\Utilities\MISC;
 
     require('../../inc/globals.php');
 

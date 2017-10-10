@@ -1,13 +1,13 @@
 <?php
-use ForumLib\ThemeEngine\MainEngine;
+use SBLib\ThemeEngine\MainEngine;
 
-use ForumLib\Utilities\MISC;
+use SBLib\Utilities\MISC;
 
-use ForumLib\Users\User;
+use SBLib\Users\User;
 
-use ForumLib\Forums\Category;
-use ForumLib\Forums\Topic;
-use ForumLib\Forums\Thread;
+use SBLib\Forums\Category;
+use SBLib\Forums\Topic;
+use SBLib\Forums\Thread;
 
 require('inc/globals.php');
 

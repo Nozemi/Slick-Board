@@ -1,8 +1,8 @@
 <?php
-    use ForumLib\Database\DBUtil;
-    use ForumLib\Database\DBUtilException;
-    use ForumLib\Utilities\Config;
-    use ForumLib\Utilities\MISC;
+    use SBLib\Database\DBUtil;
+    use SBLib\Database\DBUtilException;
+    use SBLib\Utilities\Config;
+    use SBLib\Utilities\MISC;
 
     /*
      * Let's define findAutoloader if it doesn't already exist.
