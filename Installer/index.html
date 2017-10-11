@@ -7,166 +7,159 @@
     <script type="text/javascript" src="../themes/slickboard/_assets/dist/slickboard.min.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>Slick Board Installer</h1>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center">Forum Information</h2>
-                        <hr>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Forum Name:</span>
-                                        <input class="form-control" placeholder="Fancy Forum" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Forum Description:</span>
-                                        <input class="form-control" placeholder="This is a fancy forum for fancy people!" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Forum Root:</span>
-                                        <input class="form-control" placeholder="/path/to/index.php" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Forum Theme:</span>
-                                        <select class="form-control">
-                                            <option>Default</option>
-                                            <option>Fancy Theme</option>
-                                            <option>Awesome Dark</option>
-                                            <option>Awesome Light</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Forum Language:</span>
-                                        <select class="form-control">
-                                            <option>English</option>
-                                            <option>Norwegian</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <hr>
-                        <h2 class="text-center">Database Details</h2>
-                        <hr>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-3">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Host:</span>
-                                        <input class="form-control" placeholder="localhost" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-3">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Name:</span>
-                                        <input class="form-control" placeholder="fancyforum_db" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-3">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">User:</span>
-                                        <input class="form-control" placeholder="fancyforum_admin" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-3">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Password:</span>
-                                        <input type="password" class="form-control" placeholder="Some complicated database password" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-12">
-                        <hr>
-                        <h2 class="text-center">Google reCaptcha</h2>
-                        <p class="text-center">Just leave these empty if you don't want to use Google's reCaptcha. Or go <a href="#" target="_blank">here</a> if you want to sign up for it.</p>
-                        <hr>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Private Key:</span>
-                                        <input class="form-control" placeholder="reCaptcha Private Key" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Public Key:</span>
-                                        <input class="form-control" placeholder="reCaptcha Public Key" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="float-right">
-                            <button class="btn btn-danger">Cancel Installation</button>
-                            <button class="btn btn-warning">Validate Configuration</button>
-                            <button class="btn btn-success" disabled>Install Forum</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div id="banner">
+        <div class="container">
+            <img src="../themes/slickboard/_assets/images/sb_header.png" />
         </div>
     </div>
+
+    <br />
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-slickboard table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="2">Slick Board - Installation</th>
+                    </tr>
+                    <tr class="width-def">
+                        <th width="20%"></th>
+                        <th width="80%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Confiugure Forum Details -->
+                    <tr class="header">
+                        <td colspan="2">Forum Details</td>
+                    </tr>
+                    <tr class="digest">
+                        <td colspan="2">Make your own name and description for the forum. You may choose whatever you feel like, this won't matter to the rest of the installation.</td>
+                    </tr>
+                    <tr>
+                        <td>Forum Name:</td>
+                        <td><input type="text" class="form-control" placeholder="My Awesome Forum"></td>
+                    </tr>
+                    <tr>
+                        <td>Forum Description:</td>
+                        <td><input type="text" class="form-control" placeholder="This is my awesome forum, with an awesome description."></td>
+                    </tr>
+                    <tr>
+                        <td>Contact Email:</td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-btn"><button class="btn btn-info">?</button></span>
+                                <input type="text" class="form-control" placeholder="admin@awesomeforum.my">
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Configure Forum Installation -->
+                    <tr class="header">
+                        <td colspan="2">Forum Installation</td>
+                    </tr>
+                    <tr class="digest">
+                        <td colspan="2">Details that needs to be known by the installer in order to set up the configuration properly.</td>
+                    </tr>
+                    <tr>
+                        <td>Root Directory:</td>
+                        <td><input type="text" class="form-control" placeholder="/root/path/on/webserver/"></td>
+                    </tr>
+                    <tr>
+                        <td>Theme:</td>
+                        <td>
+                            <select class="form-control">
+                                <option>Choose Theme</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Language:</td>
+                        <td>
+                            <select class="form-control">
+                                <option>Choose Language</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Integration:</td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-btn"><button class="btn btn-info">?</button></span>
+                                <select class="form-control">
+                                    <option>Choose Integration</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Configure Database Details -->
+                    <tr class="header">
+                        <td colspan="2">Database Details</td>
+                    </tr>
+                    <tr class="digest">
+                        <td colspan="2">Insert your database details here. Make sure that you've already made the actual database. The installer will populate the databse
+                        with tables and content, but it won't make the actual database for you.</td>
+                    </tr>
+                    <tr>
+                        <td>Database Host:</td>
+                        <td><input type="text" class="form-control" placeholder="localhost"></td>
+                    </tr>
+                    <tr>
+                        <td>Database Port:</td>
+                        <td><input type="text" class="form-control" placeholder="3306"></td>
+                    </tr>
+                    <tr>
+                        <td>Database Name:</td>
+                        <td><input type="text" class="form-control" placeholder="database_name"></td>
+                    </tr>
+                    <tr>
+                        <td>Database Prefix:</td>
+                        <td><input type="text" class="form-control" placeholder="prefix_"></td>
+                    </tr>
+                    <tr>
+                        <td>Database User:</td>
+                        <td><input type="text" class="form-control" placeholder="username"></td>
+                    </tr>
+                    <tr>
+                        <td>Database Password:</td>
+                        <td><input type="password" class="form-control" placeholder="password"></td>
+                    </tr>
+
+                    <!-- Configure Admin Account -->
+                    <tr class="header">
+                        <td colspan="2">Admin Account</td>
+                    </tr>
+                    <tr class="digest">
+                        <td colspan="2">Make your new admin account, which is what you'll be using to log in and manage your freshly installed forum with.</td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" class="form-control" placeholder="name@address.ext"></td>
+                    </tr>
+                    <tr>
+                        <td>Username:</td>
+                        <td><input type="text" class="form-control" placeholder="Username"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" class="form-control" placeholder="Password"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><hr></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="float-right">
+                                <button class="btn btn-danger">Cancel</button>
+                                <button class="btn btn-primary">Validate</button>
+                                <button class="btn btn-success" disabled>Install</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </body>
 </html>

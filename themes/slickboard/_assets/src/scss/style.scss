@@ -2,3 +2,16 @@
 @import '../../../../../node_modules/bootstrap/scss/bootstrap';
 @import '../../../../../node_modules/bootstrap/scss/bootstrap-grid';
 //@import '../../node_modules/font-awesome/scss/font-awesome';
+
+// Base
+@import "base/variables";
+
+// Components
+@import "components/banner";
+@import "components/tables";
+@import "components/forms";
+
+body {
+    background: $mainBackground;
+    color: $mainTextColor;
+}

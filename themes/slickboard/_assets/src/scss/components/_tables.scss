@@ -1,0 +1,52 @@
+.table {
+    &.table-slickboard {
+
+        tbody .header, tbody .digest, thead {
+            text-align: center;
+        }
+
+        thead {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: $backgroundAlternative2;
+
+            background: $detailsMain;
+
+            tr.width-def, tr.width-def th{
+                height: 0;
+                padding: 0;
+                margin: 0;
+            }
+
+            th {
+                border: 0;
+            }
+        }
+
+        tbody {
+            .header, .digest {
+                background: $backgroundAlternative;
+
+                tr, td, & {
+                    border: 0;
+                }
+            }
+
+            .header {
+                font-size: 1.7rem;
+                font-weight: bolder;
+
+                td {
+                    padding: 1rem 1rem 0 1rem;
+                }
+            }
+
+            .digest {
+
+                td {
+                    padding: .2rem 1rem 1rem 1rem;
+                }
+            }
+        }
+    }
+}

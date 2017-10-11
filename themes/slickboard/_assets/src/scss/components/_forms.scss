@@ -1,0 +1,16 @@
+.form-control {
+    border-radius: 0.255rem;
+    background: rgba(255,255,255,0.2);
+    color: #ffffff;
+    border: 1px solid #2b2b2b;
+
+    &:focus {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid #2b2b2b;
+        color: #ffffff;
+    }
+
+    &::placeholder {
+        color: #e2e2e2;
+    }
+}

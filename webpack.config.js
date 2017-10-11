@@ -20,6 +20,10 @@ module.exports = {
                     fallback: 'style-loader',
                     use: ['css-loader?minimize&sourceMap', 'sass-loader']
                 })
+            },
+            {
+                test: /\.(jpe?g|gif|png)$/,
+                loader: 'file-loader?outputPath=images/'
             }
         ]
     },

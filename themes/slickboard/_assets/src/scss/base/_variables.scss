@@ -1,0 +1,18 @@
+// Color scheme
+$backgroundMain         : #404040;
+$backgroundAlternative  : #2E3432;
+$backgroundAlternative2 : #232927;
+$backgroundBlack        : #000000;
+
+$detailsMain            : #6EA9C9;
+$detailsAlternative     : #D9D9D9;
+
+// Let's define the basics
+$mainTextColor: $detailsAlternative;
+$mainBackground: $backgroundMain;
+
+// Panels
+$panelHeadingsBackground: $backgroundAlternative2;
+$panelHeadingText: $detailsMain;
+$panelBodyBackground: $backgroundAlternative;
+$panelBodyText: $detailsAlternative;
