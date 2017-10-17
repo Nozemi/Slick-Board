@@ -1,7 +1,8 @@
 <?php
     use SBLib\Database\DBUtil;
+    use SBLib\Database\DBUtilException;
 
-    require('../../inc/globals.php');
+    require('../../vendor/autoload.php');
 
     $errors = array();
     $data = (object) $_POST;
@@ -43,7 +44,7 @@
             'pass'      => $data->dbPass,
             'prefix'    => $data->dbPrefix
         ));
-    } catch(Exception $exception) {
+    } catch(DBUtilException $exception) {
         $errors[] = 'Unable to connect to database. (' . $exception->getMessage() . ')';
     }
 

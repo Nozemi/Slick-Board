@@ -24,15 +24,14 @@ module.exports = {
             {
                 test: /\.(jpe?g|gif|png)$/,
                 loader: 'file-loader?outputPath=images/'
+            },
+            {
+                test: require.resolve('jquery'),
+                loader: 'expose-loader?jQuery!expose-loader?$'
             }
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $               : 'jquery',
-            jQuery          : 'jquery',
-            "window.jQuery" : 'jquery'
-        }),
         new ExtractTextPlugin('slickboard.min.css'),
         new webpack.optimize.UglifyJsPlugin({
             compress: { warnings: false }
