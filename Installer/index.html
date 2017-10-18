@@ -170,16 +170,31 @@
         });
 
         $errorMessage = $('<div class="invalid-feedback"></div>');
+        $successMessage = $('<div class="valid-feedback"></div>');
+        $errorAlert = $('<p class="alert alert-danger"></p>');
 
         function validateSettings() {
             $('.invalid-feedback').remove();
+            $('.valid-feedback').remove();
+            $('.alert').remove();
 
             var verificationAjax = new SBAjax($('#messages'), './ajax/validateConfigs.ajax.php', $('#installerForm').serialize(), 'json');
             verificationAjax.sendData($('#messages'), function(response, message_element) {
-                $.each(response, function(key, message) {
-                    $('[name="' + key + '"]').addClass('is-invalid');
-                    $('[name="' + key + '"]').closest('td').append($errorMessage.clone().html(message));
-                })
+                $.each(response.success, function(key, message) {
+                    if(message === true) {
+                        $('[name="' + key + '"]').addClass('is-valid').removeClass('is-invalid');
+                    } else if(message.status === true) {
+                        $('[name="' + key + '"]').addClass('is-valid').removeClass('is-invalid').closest('td').append($successMessage.clone().html(message.message));
+                    }
+                });
+
+                $.each(response.errors, function(key, message) {
+                    if($.isNumeric(key)) {
+                        $(message_element).append($errorAlert.clone().html(message));
+                    } else {
+                        $('[name="' + key + '"]').addClass('is-invalid').removeClass('is-valid').closest('td').append($errorMessage.clone().html(message));
+                    }
+                });
             });
         }
     </script>

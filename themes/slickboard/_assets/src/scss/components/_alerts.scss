@@ -1,0 +1,9 @@
+.alert {
+    border-radius: 0;
+
+    &.alert-danger {
+        color: #ffffff;
+        background-color: #e0071a;
+        border-color: #9c0011;
+    }
+}
