@@ -1,141 +1,43 @@
 <?php
-use SBLib\ThemeEngine\MainEngine;
+    use SBLib\Handlers\Pages\ErrorsPage;
+    use SBLib\Handlers\AbstractPage;
 
-use SBLib\Utilities\MISC;
+    use SBLib\Utilities\MISC;
 
-use SBLib\Users\User;
+    require('./inc/globals.php');
 
-use SBLib\Forums\Category;
-use SBLib\Forums\Topic;
-use SBLib\Forums\Thread;
+    /** @var object $currentDirectory */
+    if((!file_exists($currentDirectory->server . 'Installer/install.lock')
+        || !file_exists($currentDirectory->server . 'config/.htaccess'))
+        && filter_input(INPUT_GET,'page', FILTER_SANITIZE_STRING) != 'installer') {
+        header("Location: " . $currentDirectory->client . 'installer'); exit;
+    }
 
-if(!file_exists('Installer/install.lock') || !file_exists('config') || !file_exists('.htaccess') || !file_exists('config/.htaccess')) {
-    header("Location: Installer");
-}
+    $page   = 'SBLib\Handlers\Pages\\' . ucwords(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING)) . 'Page';
+    $params = filter_input(INPUT_GET, 'params', FILTER_SANITIZE_STRING);
 
-require('inc/globals.php');
-
-$dir = MISC::findFile('plugins'); // Gets the library directory's actual position.
-
-// Gets the classes inside the library directory.
-foreach(glob($dir . '/*.php') as $file) {
-    require_once($file);
-}
-foreach(glob($dir . '/*/*.php') as $file) {
-    require_once($file);
-}
-
-if(isset($_COOKIE['themeName'])) {
-    $TE = new MainEngine($_COOKIE['themeName'], $sbSql, $sbConfig);
-} else {
-    $TE = new MainEngine(MISC::findKey('theme', $sbConfig->config), $sbSql, $sbConfig);
-}
-
-if(isset($_COOKIE['devkey']) != 'g4r39poiuhtyo8934hrgo8it5h907gh3tg357gpgh7r3458') {
-    $nope = $TE->getTemplate('coming_soon', 'misc');
-    if(!$nope) {
-        echo $TE->getTemplate('404', 'errors');
+    if(class_exists($page)) {
+        $pageHandler = new $page($params);
+    } else if(class_exists('SBLib\Handlers\Pages\\' . $page)) {
+        $className = 'SBLib\Handlers\Pages\\' . $page;
+        $pageHandler = new $className($params);
     } else {
-        echo $nope;
+        http_response_code(404);
+        $pageHandler = new ErrorsPage(404, $page);
     }
 
-    exit;
-
-}
-
-if(!isset($_GET['page'])) {
-    $_GET['page'] = 'portal';
-}
-
-if(empty($TE->getConfig())) {
-    if(empty($_SESSION['user']) && (
-            $_GET['page'] == 'settings' || $_GET['page'] == 'signout'
-        )) {
-        echo $TE->getTemplate('notloggedin', 'errors');
+    if(!$pageHandler instanceof AbstractPage) {
+        echo $page . ' does not extend SBLib\Handlers\AbstractPage'; exit;
     }
 
-    if(!empty($_SESSION['user']) && (
-            $_GET['page'] == 'login' || $_GET['page'] == 'register' ||
-            $_GET['page'] == 'signin' || $_GET['page'] == 'signup'
-        )) {
-        echo $TE->getTemplate('loggedin', 'errors');
+    // TODO: Implement a decent plugin functionality.
+    // Let's handle the plugins directory, and register them to the $pageHandler object.
+    $pluginsDirectory = MISC::findDirectory('plugins');
+    foreach(glob($pluginsDirectory . '/*.json') as $jsonConfig) {
+        $config = json_decode(file_get_contents($jsonConfig));
+        foreach($config->classes as $class) {
+            require_once($pluginsDirectory . $config->name . '/' . $class);
+        }
+
+        $pageHandler->registerPlugin($config);
     }
-} else {
-    if(empty($_SESSION['user']) && in_array($_GET['page'], $TE->getConfig()['loginRequired'])) {
-        echo $TE->getTemplate('notloggedin', 'errors');
-        exit;
-    }
-
-    if(!empty($_SESSION['user']) && in_array($_GET['page'], $TE->getConfig()['loginDeny'])) {
-        echo $TE->getTemplate('loggedin', 'errors');
-        exit;
-    }
-}
-
-if($_GET['page'] == 'signout') {
-    unset($_SESSION['user']);
-    header("Location: /portal");
-}
-
-$U = new User($sbSql);
-
-if(($_GET['page'] == 'profile' && !isset($_GET['username']))
-    || $_GET['page'] == 'profile' && !$U->usernameExists($_GET['username'])) {
-    echo $TE->getTemplate('profile_not_found', 'user'); exit;
-}
-
-if(isset($_GET['category'], $_GET['topic'], $_GET['thread']) && $_GET['page'] == 'forums') {
-
-    $C = new Category($sbSql);
-    $cat = $C->getCategory($_GET['category'], false);
-
-    $T = new Topic($sbSql);
-    $top = $T->getTopic($_GET['topic'], false, $cat->id);
-
-    $TR = new Thread($sbSql);
-    if(isset($_GET['threadId'])) {
-        $trd = $TR->getThread($_GET['threadId']);
-    } else {
-        $trd = $TR->getThread($_GET['thread'], false, $top->id);
-    }
-    $trd->setPosts();
-
-    if(empty($trd->title)) {
-        $html = $TE->getTemplate('notfound','forums');
-    } else {
-        $html = $TE->getTemplate('thread', 'forums');
-    }
-} else if(isset($_GET['category'], $_GET['topic']) && $_GET['page'] == 'forums') {
-
-    $C = new Category($sbSql);
-    $cat = $C->getCategory($_GET['category'], false);
-
-    $T = new Topic($sbSql);
-    $top = $T->getTopic($_GET['topic'], false, $cat->id);
-
-    if(empty($top->title)) {
-        $html = $TE->getTemplate('notfound','forums');
-    } else {
-        $html = $TE->getTemplate('threads', 'forums');
-    }
-} else if(isset($_GET['category']) && $_GET['page'] == 'forums') {
-
-    $C = new Category($sbSql);
-    $cat = $C->getCategory($_GET['category'], false);
-
-    if(empty($cat->title)) {
-        $html = $TE->getTemplate('notfound','forums');
-    } else {
-        $html = $TE->getTemplate('category', 'forums');
-    }
-} else if($_GET['page'] == 'forums') {
-    $html = $TE->getTemplate('categories', 'forums');
-} else {
-    $html = $TE->getTemplate($_GET['page']);
-}
-
-if(empty($html)) {
-    echo $TE->getTemplate('404', 'errors');
-} else {
-    echo $html;
-}

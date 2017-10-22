@@ -1,9 +1,4 @@
 <?php
-    use SBLib\Database\DBUtil;
-    use SBLib\Database\DBUtilException;
-    use SBLib\Utilities\Config;
-    use SBLib\Utilities\MISC;
-
     /*
      * Let's define findAutoloader if it doesn't already exist.
      * This method will help us automatically finding the autoloader.php from composer.
@@ -12,7 +7,7 @@
         function findAutoloader() {
             $autoLoader = 'vendor/autoload.php';
             if(!file_exists($autoLoader)) {
-                for($i = 0; $i < 3; $i++) {
+                for($i = 0; $i < 5; $i++) {
                     if(!file_exists(($autoLoader))) {
                         $autoLoader = '../' . $autoLoader;
                     } else {
@@ -36,17 +31,13 @@
 
     require(findAutoloader());
 
-    // TODO: Add a way to override slickboard config directory.
-    $sbConfig   = new Config;
-    try {
-        $sbSql = new DBUtil((object) array(
-            'user'      => $sbConfig->getConfigValue('dbUser'),
-            'pass'      => $sbConfig->getConfigValue('dbPass'),
-            'host'      => $sbConfig->getConfigValue('dbHost'),
-            'name'      => $sbConfig->getConfigValue('dbName'),
-            'prefix'    => $sbConfig->getConfigValue('dbPrefix'),
-            'port'      => $sbConfig->getConfigValue('dbPort')
-        ));
-    } catch(DBUtilException $exception) {
-        die($exception->getMessage());
-    }
+    $currentDirectory = explode('/', dirname(dirname(__FILE__)));
+    $currentDirectory = end($currentDirectory);
+
+    $currentDirectory = (($currentDirectory === 'html') ? '' : $currentDirectory) . '/';
+
+    $currentDirectory = (object) [
+        'server'     => $_SERVER['DOCUMENT_ROOT'] . $currentDirectory,
+        'clientFull' => $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $currentDirectory,
+        'client'     => $currentDirectory
+    ];

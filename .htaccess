@@ -1,0 +1,14 @@
+DirectoryIndex index.php
+
+#ErrorDocument 404 /index.php
+#ErrorDocument 500 /error.php
+
+RewriteEngine Off
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+RewriteCond %{REQUEST_FILENAME}.php !-f
+RewriteRule ^([\w-]+)$ index.php?page=$1
+RewriteRule ^(.*?)/(.*)$ index.php?page=$1&params=$2

@@ -9,4 +9,4 @@
         $TE = new MainEngine($sbConfig->getConfigValue('theme'), $sbSql, $sbConfig);
     }
 
-    echo $TE->getTemplate('403', 'errors');
+    echo $TE->getTemplate('404', '_errors');
