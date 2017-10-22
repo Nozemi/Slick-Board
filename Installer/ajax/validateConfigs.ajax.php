@@ -1,9 +1,11 @@
 <?php
-    use SBLib\Installer\Validator;
+    use SBLib\Handlers\Install\Validator;
 
-    require('../../vendor/autoload.php');
+    require('../../inc/globals.php');
 
-    $Validator = new Validator(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
+    $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+    $Validator = new Validator($data);
     $Validator->validateAdmin()
         ->validateDatabase()
         ->validateForum();

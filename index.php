@@ -6,15 +6,20 @@
 
     require('./inc/globals.php');
 
-    /** @var object $currentDirectory */
-    if((!file_exists($currentDirectory->server . 'Installer/install.lock')
-        || !file_exists($currentDirectory->server . 'config/.htaccess'))
+    /** @var object $rootDirectory */
+    if((!file_exists($rootDirectory->server . 'install.lock')
+        || !file_exists($rootDirectory->server . 'config/.htaccess'))
         && filter_input(INPUT_GET,'page', FILTER_SANITIZE_STRING) != 'installer') {
-        header("Location: " . $currentDirectory->client . 'installer'); exit;
+        header("Location: " . $rootDirectory->client . 'installer'); exit;
     }
 
-    $page   = 'SBLib\Handlers\Pages\\' . ucwords(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING)) . 'Page';
+    $page   = ucwords(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING)) . 'Page';
     $params = filter_input(INPUT_GET, 'params', FILTER_SANITIZE_STRING);
+
+    if($page === 'Page') {
+        header("Location: " . $rootDirectory->clientFull . 'portal');
+        exit;
+    }
 
     if(class_exists($page)) {
         $pageHandler = new $page($params);

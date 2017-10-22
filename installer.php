@@ -7,13 +7,13 @@
     <title>Slick Board Installer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo $currentDirectory->client; ?>themes/slickboard/_assets/dist/slickboard.min.css" />
-    <script type="text/javascript" src="<?php echo $currentDirectory->client; ?>themes/slickboard/_assets/dist/slickboard.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory->client; ?>themes/slickboard/_assets/dist/slickboard.min.css" />
+    <script type="text/javascript" src="<?php echo $rootDirectory->client; ?>themes/slickboard/_assets/dist/slickboard.min.js"></script>
 </head>
 <body>
 <div id="banner">
     <div class="container">
-        <img src="<?php echo $currentDirectory->client; ?>themes/slickboard/_assets/images/sb_header.png" />
+        <img src="<?php echo $rootDirectory->client; ?>themes/slickboard/_assets/images/sb_header.png" />
     </div>
 </div>
 
@@ -159,7 +159,7 @@
                         <div class="float-right">
                             <button class="btn btn-danger">Cancel</button>
                             <button class="btn btn-primary" onClick="validateSettings()">Validate</button>
-                            <button class="btn btn-success" disabled>Install</button>
+                            <button class="btn btn-success" onClick="installForums()">Install</button>
                         </div>
                     </td>
                 </tr>
@@ -177,12 +177,37 @@
     $successMessage = $('<div class="valid-feedback"></div>');
     $errorAlert = $('<p class="alert alert-danger"></p>');
 
+    function installForums() {
+        $('.invalid-feedback').remove();
+        $('.valid-feedback').remove();
+        $('.alert').remove();
+
+        var verificationAjax = new SBAjax($('#messages'), '<?php echo $rootDirectory->client; ?>Installer/ajax/installForums.ajax.php', $('#installerForm').serialize(), 'json');
+        verificationAjax.sendData($('#messages'), function(response, message_element) {
+            $.each(response.success, function(key, message) {
+                if(message === true) {
+                    $('[name="' + key + '"]').addClass('is-valid').removeClass('is-invalid');
+                } else if(message.status === true) {
+                    $('[name="' + key + '"]').addClass('is-valid').removeClass('is-invalid').closest('td').append($successMessage.clone().html(message.message));
+                }
+            });
+
+            $.each(response.errors, function(key, message) {
+                if($.isNumeric(key)) {
+                    $(message_element).append($errorAlert.clone().html(message));
+                } else {
+                    $('[name="' + key + '"]').addClass('is-invalid').removeClass('is-valid').closest('td').append($errorMessage.clone().html(message));
+                }
+            });
+        });
+    }
+
     function validateSettings() {
         $('.invalid-feedback').remove();
         $('.valid-feedback').remove();
         $('.alert').remove();
 
-        var verificationAjax = new SBAjax($('#messages'), '<?php echo $currentDirectory->client; ?>Installer/ajax/validateConfigs.ajax.php', $('#installerForm').serialize(), 'json');
+        var verificationAjax = new SBAjax($('#messages'), '<?php echo $rootDirectory->client; ?>Installer/ajax/validateConfigs.ajax.php', $('#installerForm').serialize(), 'json');
         verificationAjax.sendData($('#messages'), function(response, message_element) {
             $.each(response.success, function(key, message) {
                 if(message === true) {

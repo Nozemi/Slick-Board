@@ -1,4 +1,6 @@
 <?php
+    use SBLib\Utilities\MISC;
+
     /*
      * Let's define findAutoloader if it doesn't already exist.
      * This method will help us automatically finding the autoloader.php from composer.
@@ -31,13 +33,4 @@
 
     require(findAutoloader());
 
-    $currentDirectory = explode('/', dirname(dirname(__FILE__)));
-    $currentDirectory = end($currentDirectory);
-
-    $currentDirectory = (($currentDirectory === 'html') ? '' : $currentDirectory) . '/';
-
-    $currentDirectory = (object) [
-        'server'     => $_SERVER['DOCUMENT_ROOT'] . $currentDirectory,
-        'clientFull' => $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $currentDirectory,
-        'client'     => $currentDirectory
-    ];
+    $rootDirectory = MISC::getRootDirectory();

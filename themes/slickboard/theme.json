@@ -1,0 +1,12 @@
+{
+  "name"         : "SlickBoard",
+  "imgdir"       : true,
+  "varWrapper1"  : "{{",
+  "varWrapper2"  : "}}",
+  "loginRequired": [
+    "settings", "newthread"
+  ],
+  "loginDeny" : [
+    "login", "register"
+  ]
+}
