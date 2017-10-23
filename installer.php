@@ -1,5 +1,11 @@
 <?php
     require('inc/globals.php');
+
+    if((!file_exists($rootDirectory->server . 'install.lock')
+            || !file_exists($rootDirectory->server . 'config/.htaccess'))
+        && filter_input(INPUT_GET,'page', FILTER_SANITIZE_STRING) != 'installer') {
+        header("Location: " . $rootDirectory->client . 'installer'); exit;
+    }
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,8 @@
 <?php
-    use SBLib\Utilities\MISC;
+
+use SBLib\Database\DBUtil;
+use SBLib\Utilities\Config;
+use SBLib\Utilities\MISC;
 
     /*
      * Let's define findAutoloader if it doesn't already exist.
@@ -34,3 +37,12 @@
     require(findAutoloader());
 
     $rootDirectory = MISC::getRootDirectory();
+
+    $GLOBALS['Config'] = new Config;
+    if(!empty($GLOBALS['Config']->get('dbName'))) {
+        $dbDetails = [];
+        foreach($GLOBALS['Config']->getAll('database') as $key => $value) {
+            $dbDetails[strtolower(str_replace('db', '', $key))] = $value;
+        }
+        $GLOBALS['DBUtil'] = new DBUtil((object) $dbDetails);
+    }
