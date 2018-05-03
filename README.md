@@ -1,3 +1,5 @@
+Continued development on: https://lab.nozemi.me/slickboard
+
 # Slick Board - Open Source (WIP)
 This is Slick Board's frontend repository. This is a project I'm running because I want to learn,
 and I have a great passion for programming. The plan is to make a stable, nice and easy to use forum
